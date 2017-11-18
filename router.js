@@ -9,15 +9,12 @@ var handler = require('./handler');
 //首页
 router.get('/', handler.index);
 
-router.get('/index', handler.index)
+router.get('/index', handler.index);
 
-router.get('/students', handler.students)
+router.get('/students', handler.students);
 
 //详情页
-router.get('/info', function (req, res) {
-
-    res.send('info');
-})
+router.get('/info', handler.info);
 //添加页
 router.get('/add', function (req, res) {
     res.send('add');

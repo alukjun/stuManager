@@ -35,3 +35,29 @@ module.exports.students = function(req,res){
         });
     })
 }
+
+//学生个人信息页
+module.exports.info = function(req,res){
+
+    var _id = req.query._id;
+    _id = mongodb.ObjectId(_id);
+
+    var mc = mongodb.MongoClient;
+    var url = DB_URL;
+    mc.connect(url,function(err,db){
+        if(err){
+            throw err;
+        }
+    
+        db.collection('students').findOne({_id},function(err,doc){
+
+            if(err){
+                throw err;
+            }
+
+            db.close();
+
+            res.render('info',{ item:doc });
+        });
+    })
+}
