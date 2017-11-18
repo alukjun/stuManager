@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学员信息管理系统 - 添加学员</title>
+  <style>
+    form div {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>添加学员</h1>
+
+  <form action="/add" method="post">
+    <div>
+      <label for="sno">学号：</label>
+      <input type="text" name="sno" id="sno">
+    </div>
+
+    <div>
+      <label for="sname">姓名：</label>
+      <input type="text" name="sname" id="sname">
+    </div>
+
+    <div>
+      <span>性别：</span>
+      <label for="smale">男</label>
+      <input type="radio" name="sgender" id="smale" value="M">
+
+      <label for="sfemale">女</label>
+      <input type="radio" name="sgender" id="sfemale" value="F">
+    </div>
+
+    <div>
+      <label for="sbirthday">生日：</label>
+      <input type="date" name="sbirthday" id="sbirthday">
+    </div>
+
+    <div>
+      <label for="sphone">电话：</label>
+      <input type="text" name="sphone" id="sphone">
+    </div>
+
+    <div>
+      <label for="saddr">籍贯：</label>
+      <select name="saddr" id="saddr">
+        <% cities.forEach(function (ele, idx) { %>
+        <option value="<%= ele.cname %>"><%= ele.cname %></option>
+        <% });%>
+      </select>
+    </div>
+
+    <div>
+      <label for="smajor">专业：</label>
+      <select name="smajor" id="smajor">
+        <% majors.forEach(function (ele, idx) { %>
+        <option value="<%= ele.name %>"><%= ele.name %></option>
+        <% });%>
+      </select>
+    </div>
+
+    <div>
+      <input type="submit" value="添加学员">
+    </div>
+  </form>
+</body>
+</html>

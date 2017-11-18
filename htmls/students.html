@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学员信息管理系统 - 学生信息列表</title>
+  <style>
+    table {
+      width: 1000px;
+    }
+
+    table thead tr th {
+      height: 35px;
+    }
+
+    table tbody tr td {
+      height: 25px;
+    }
+  </style>
+</head>
+<body>
+  <h1>学员信息管理系统</h1>
+
+  <p><a href="./add">添加学员</a></p>
+
+  <table border="1">
+    <thead>
+      <tr>
+        <th>序号</th>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>出生日期</th>
+        <th>联系电话</th>
+        <th>所属地</th>
+        <th>专业</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% list.forEach(function(ele, idx) { %>
+
+      <tr>
+        <td><%= ele._id.toString().slice(-5) %></td>
+        <td><%= ele.sno %></td>
+        <td><%= ele.sname %></td>
+        <td><%= ele.sgender %></td>
+        <td><%= ele.sbirthday %></td>
+        <td><%= ele.sphone %></td>
+        <td><%= ele.saddr %></td>
+        <td><%= ele.smajor %></td>
+        <td>
+          <a href="/info?_id=<%= ele._id %>">查看</a> | <a href="/edit?_id=<%= ele._id %>">编辑</a> | <a href="/delete?_id=<%= ele._id %>" onclick="if(window.confirm('确定要删除吗？')) { return true; } else { return false;} ">删除</a>
+        </td>
+      </tr>
+
+      <% });%>
+      
+    </tbody>
+  </table>
+</body>
+</html>

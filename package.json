@@ -1,0 +1,19 @@
+{
+  "name": "my-studentSystem",
+  "version": "1.0.0",
+  "description": "```html\r 1. express web开发框架\r 2. mongodb 数据库\r 3. body-parser\r 4. nodeJs 内置模板\r 5. ejs 模板引擎\r 6. 模块化\r ```",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongodb": "^2.2.33"
+  }
+}

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>学员信息管理系统 - 编辑学员</title>
+  <style>
+    form div {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>编辑学员</h1>
+
+  <form action="/edit" method="post">
+
+    <!-- 隐藏域 -->
+    <input type="hidden" name="_id" value="<%= item._id %>">
+    
+    <div>
+      <label for="sno">学号：</label>
+      <input type="text" name="sno" id="sno" value="<%= item.sno %>">
+    </div>
+
+    <div>
+      <label for="sname">姓名：</label>
+      <input type="text" name="sname" id="sname" value="<%= item.sname %>">
+    </div>
+
+    <div>
+      <span>性别：</span>
+      <% if (item.sgender === '男') { %>
+
+      <label for="smale">男</label>
+      <input type="radio" checked name="sgender" id="smale" value="M">
+
+      <label for="sfemale">女</label>
+      <input type="radio" name="sgender" id="sfemale" value="F">
+
+      <%} else { %>
+
+      <label for="smale">男</label>
+      <input type="radio" name="sgender" id="smale" value="M">
+
+      <label for="sfemale">女</label>
+      <input type="radio" checked name="sgender" id="sfemale" value="F">
+
+      <%} %>
+      
+    </div>
+
+    <div>
+      <label for="sbirthday">生日：</label>
+      <input type="date" name="sbirthday" id="sbirthday" value="<%= item.sbirthday %>">
+    </div>
+
+    <div>
+      <label for="sphone">电话：</label>
+      <input type="text" name="sphone" id="sphone" value="<%= item.sphone %>">
+    </div>
+
+    <div>
+      <label for="saddress">籍贯：</label>
+      <select name="saddr" id="saddr">
+        <% cities.forEach(function (ele, idx) { %>
+
+        <% if (ele.cname === item.saddr) { %>
+          <option value="<%= ele.cname %>" selected><%= ele.cname %></option>
+        <% } else { %>
+          <option value="<%= ele.cname %>"><%= ele.cname %></option>
+        <% }%>
+
+        <% });%>
+      </select>
+    </div>
+
+    <div>
+      <label for="smajor">专业：</label>
+      <select name="smajor" id="smajor">
+        <% majors.forEach(function (ele, idx) { %>
+
+        <% if (ele.name === item.smajor) { %>
+          <option value="<%= ele.name %>" selected><%= ele.name %></option>
+        <% } else { %>
+          <option value="<%= ele.name %>"><%= ele.name %></option>
+        <% }%>
+        
+        <% });%>
+      </select>
+    </div>
+
+    <div>
+      <input type="submit" value="保存修改">
+    </div>
+  </form>
+</body>
+</html>
