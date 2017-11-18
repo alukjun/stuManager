@@ -8,6 +8,7 @@
  var router = require('./router');
  var ejs = require('ejs');
  var path = require('path');
+ var bodyParser = require('body-parser');
 
  var app = express();
 
@@ -17,6 +18,8 @@
  app.engine('html',ejs.renderFile);
 
  app.set('view engine','html');
+
+ app.use(bodyParser.urlencoded({extended:false}));
  //挂载路由
  app.use(router);
 

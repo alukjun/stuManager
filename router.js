@@ -18,22 +18,14 @@ router.get('/info', handler.info);
 //添加页
 router.get('/add', handler.showAdd);
 
-router.post('/add', function (req, res) {
-    res.send('add post');
-})
+router.post('/add', handler.postAdd);
 
 //编辑页
-router.get('/edit', function (req, res) {
-    res.send('edit');
-})
+router.get('/edit', handler.showEdit);
 
-router.post('/edit', function (req, res) {
-    res.send('edit post');
-})
+router.post('/edit', handler.postEdit);
 
 //删除get
-router.get('/delete', function (req, res) {
-    res.send('delete');
-})
+router.get('/delete', handler.deleteOne);
 
 module.exports = router;

@@ -5,11 +5,19 @@
 
 var mongodb = require('mongodb');
 const DB_URL = 'mongodb://127.0.0.1:27017/sms';
-module.exports.findAll = function (collectionName,callback) {
-    //连接数据库
+
+function cjj_DB_Connect(callback) {
     var mc = mongodb.MongoClient;
     var url = DB_URL;
     mc.connect(url, function (err, db) {
+        callback(err, db);
+    })
+}
+
+module.exports.findAll = function (collectionName, callback) {
+
+    cjj_DB_Connect(function (err, db) {
+
         if (err) {
             throw err;
         }
@@ -23,10 +31,9 @@ module.exports.findAll = function (collectionName,callback) {
     })
 }
 
-module.exports.findOne = function(collectionName,_id,callback){
-    var mc = mongodb.MongoClient;
-    var url = DB_URL;
-    mc.connect(url, function (err, db) {
+module.exports.findOne = function (collectionName, _id, callback) {
+    cjj_DB_Connect(function (err, db) {
+
         if (err) {
             throw err;
         }
@@ -37,12 +44,75 @@ module.exports.findOne = function(collectionName,_id,callback){
 
             db.close();
 
-            callback(err,doc);
+            callback(err, doc);
 
         })
-    })        
+    })
 }
 
-module.exports.Objectid = function(idStr){
+module.exports.insertOne = function (collectionName, obj, callback) {
+    cjj_DB_Connect(function (err, db) {
+
+        if (err) {
+            throw err;
+        }
+
+        db.collection(collectionName).insertOne(obj, function (err) {
+
+            if (err) {
+                throw err;
+            }
+
+            // console.log('ok');
+
+            db.close();
+
+            callback(err);
+        })
+    })
+
+}
+
+module.exports.updateOne = function (collectionName, _id, obj, callback) {
+    cjj_DB_Connect(function (err, db) {
+
+        if (err) {
+            throw err;
+        }
+
+        db.collection(collectionName).updateOne({
+            _id
+        }, obj, function (err) {
+
+            if (err) {
+                throw err;
+            }
+
+            db.close();
+
+            callback(err);
+        })
+    })
+}
+
+module.exports.deleteOne = function (collectionName, _id, callback) {
+    cjj_DB_Connect(function (err, db) {
+
+        if (err) {
+            throw err;
+        }
+        db.collection(collectionName).deleteOne({
+            _id
+        }, function (err) {
+            if (err) {
+                throw err;
+            }
+            db.close();
+            callback(err);
+        })
+    })
+}
+
+module.exports.Objectid = function (idStr) {
     return mongodb.ObjectId(idStr);
 }
