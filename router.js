@@ -16,9 +16,7 @@ router.get('/students', handler.students);
 //详情页
 router.get('/info', handler.info);
 //添加页
-router.get('/add', function (req, res) {
-    res.send('add');
-})
+router.get('/add', handler.showAdd);
 
 router.post('/add', function (req, res) {
     res.send('add post');
