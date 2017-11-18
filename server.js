@@ -5,15 +5,13 @@
  */
 
  var express = require('express');
+ var router = require('./router');
 
  var app = express();
 
+ 
 
- app.get('/',function(req,res){
-
-    res.send('ok');
- });
-
+ app.use(router);
 
  app.listen(8080,function(){
      console.log(`服务器启动了 http://localhost:8080`);
