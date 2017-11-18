@@ -4,48 +4,40 @@
 
 var express = require('express');
 var router = express.Router();
+var handler = require('./handler');
 
 //首页
-router.get('/', function (req, res) {
+router.get('/', handler.index);
 
-    res.send('ok');
-});
+router.get('/index', handler.index)
 
-router.get('/index',function(req,res){
-
-    res.send('index');
-})
-
-router.get('/student',function(req,res){
-
-    res.send('student');
-})
+router.get('/students', handler.students)
 
 //详情页
-router.get('/info',function(req,res){
+router.get('/info', function (req, res) {
 
     res.send('info');
 })
 //添加页
-router.get('/add',function(req,res){
+router.get('/add', function (req, res) {
     res.send('add');
 })
 
-router.post('/add',function(req,res){
+router.post('/add', function (req, res) {
     res.send('add post');
 })
 
 //编辑页
-router.get('/edit',function(req,res){
+router.get('/edit', function (req, res) {
     res.send('edit');
 })
 
-router.post('/edit',function(req,res){
+router.post('/edit', function (req, res) {
     res.send('edit post');
 })
 
 //删除get
-router.get('/delete',function(req,res){
+router.get('/delete', function (req, res) {
     res.send('delete');
 })
 
